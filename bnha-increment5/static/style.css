@@ -31,7 +31,6 @@ nav a:hover {
 
 .active {
   color: #92ad70;
-  background: white;
 }
 
 #cta {
@@ -97,7 +96,8 @@ tr:nth-child(even) td {
 }
 
 .header {
-   grid-area: header; 
+  grid-area: header; 
+  align-self: start
 }
 .nav_bar {
    grid-area: nav_bar; 
@@ -109,6 +109,14 @@ tr:nth-child(even) td {
 .main_figure {
    grid-area: main_figure; 
    align-self: start;
+}
+.main_figure img {
+  max-width: 100%;
+  height: auto; 
+}
+.main img {
+  max-width: 100%;
+  height: auto;
 }
 .footer {
    grid-area: footer;
@@ -133,7 +141,8 @@ tr:nth-child(even) td {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 650px) {
+
+/* @media only screen and (max-width: 650px) {
    .nav_bar a:not(:first-child) {
      display: none;
    }
@@ -191,4 +200,4 @@ iframe {
 .leaflet-control-zoom {
   background: white;
   border: none;
-}
+} */
