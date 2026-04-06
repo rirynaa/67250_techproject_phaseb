@@ -41,6 +41,7 @@ nav a:hover {
   font-size: 16px;
   border-radius: 12px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 footer {
@@ -76,6 +77,15 @@ tr:nth-child(even) td {
   border-radius: 12px;
   cursor: pointer;
 }
+
+#readMore {
+  cursor: pointer;
+}
+
+#readLess {
+  cursor: pointer;
+}
+
 
 .container {
   display: grid; 
@@ -164,6 +174,58 @@ tr:nth-child(even) td {
     display: block;
     background: white;
     margin-right: auto;
+  }
+
+  .container {
+    grid-template-areas:
+      'header'
+      'nav_bar'
+      'main'
+      'main_figure'
+      'footer';
+    grid-template-columns: 1fr;
+  }
+
+  .tickets-page .container {
+    grid-template-areas:
+      'header'
+      'nav_bar'
+      'main'
+      'main_figure'
+      'form'
+      'footer';
+    grid-template-columns: 1fr;
+  }
+
+  #purchaseForm {
+    text-align: left;
+    margin: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+  }
+
+  table {
+    width: 100%;
+    display: block;
+  }
+
+  #purchaseForm {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #purchaseForm input {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
