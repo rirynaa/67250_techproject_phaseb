@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Bryna Ha">
+    <meta name="keywords" content="Museum, Carnegie Mellon University, Information Systems">
+    <meta name="description" content="MonoMuse website redesign project">
+    <title>MonoMuse</title>
+    <link rel="stylesheet" href="./static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+    <script src="./static/script.js" defer></script>
+</head>
+<body onload="addYear()">
+    <div class="container"> 
+        <header class="header">
+            <img id="logo" src="./static/MonoMuse1.png" alt="MonoMuse Museum Logo"> 
+        </header>
+        <nav class="nav_bar">
+            <a href="/index.html">Home</a>
+            <a href="views/explore.html">Explore</a>
+            <a href="views/exhibitions.html">Exhibitions</a>
+            <a href="views/tickets.html">Buy Tickets</a>
+        </nav>
+        <main class="main">
+            <h2 id="greeting">Welcome to the MonoMuse Museum</h2>
+            <p> MonoMuse museum is one of the largest natural history museums in the Washington, Maryland, and Virginia region, featuring an extensive collection of artifacts and exhibits. </p>
+            <button id="cta">Buy Tickets</button>
+            <p id="shortIntro"> Monomuse thrives on the community of art and technology enthusiasts. <span style="color:blue" id="readMore">Read More</span> </p>
+            <p id="longIntro" style="display:none"> We are dedicated to providing an engaging and educational experience for visitors of all ages. Our exhibits cover a wide range of topics, including art, history, science, and culture. We also offer a variety of programs and events throughout the year, such as workshops, lectures, and family-friendly activities. Whether you're interested in exploring ancient civilizations or learning about the latest advancements in technology, MonoMuse has something for everyone. <span style="color:blue" id="readLess">Read Less</span></p>
+        </main>
+        <figure class="main_figure">
+            <img src="./static/smithsoni.jpg" alt="Smithsonian Museum" width="500" height="300">
+        </figure>
+        <footer class="footer">
+            <p id="copyYear"></p>
+        </footer>
+    </div>
+</body>
+</html>
