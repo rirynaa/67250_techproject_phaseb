@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="../static/script.js" defer></script>
+</head>
+<body onload="addYear(); loadConfirmationTotal();">
+    <div class="container"> 
+        <header class="header">
+            <img id="logo" src="../static/MonoMuse1.png" alt="MonoMuse Museum Logo"> 
+        </header>
+        <nav class="nav_bar">
+            <button id="hamburger" onclick="toggleNav()"> ☰ </button>
+            <a href="../index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="exhibitions.html">Exhibitions</a>
+            <a href="tickets.html">Buy Tickets</a>
+        </nav>
+        <main class="main">
+            <h1>Thank you for your purchase!</h1>
+            <p id="output">Your total is: $</p>
+            <script>
+                var total = localStorage.getItem("total");
+                document.getElementById("output").innerHTML = "Your total is: $" + total;
+            </script>
+            <p>Your tickets have been successfully purchased. We look forward to welcoming you to MonoMuse Museum!</p>
+            <a href="../index.html">Return to Home</a>
+        </main>
+        <figure class="main_figure"></figure>
+        <footer class="footer">
+            <p id="copyYear"></p>
+        </footer>
+    </div>
+</body>
+</html>

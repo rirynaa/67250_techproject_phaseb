@@ -1,43 +1,3 @@
-var x = 5;
-var y = 7;
-var z = x + y;
-console.log(z);
-
-var A = "Hello ";
-var B = "world!";
-var C = A + B;
-console.log(C);
-
-function sumnPrint(x1, x2) {
-    var sum = x1 + x2
-    console.log(sum)
-}
-sumnPrint(x, y);
-sumnPrint(A, B);
-
-if (C.length > z) {
-    console.log(C)
-    if (C.length < z) {
-        console.log(z)
-    }
-} else {
-    console.log("good job!")
-}
-
-L1 = ["Watermelon","Pineapple","Pear","Banana"];
-L2 = ["Apple","Banana","Kiwi","Orange"];
-
-/*function findTheBanana(list) {
-    list.forEach((element) => {
-        if (element == "Banana") {
-            alert("Found the banana!")
-        }
-    });
-}   
-
-findTheBanana(L1);
-findTheBanana(L2); */
-
 var now = new Date();
 var hour = now.getHours();
 
@@ -89,20 +49,16 @@ if (document.getElementById("longIntro") != null) {
     });
 }
 
-function showPurchaseForm(selectedDate) {
-    document.getElementById("purchaseForm").style.display = "block";
-    if (selectedDate) {
-      document.getElementById("date").value = selectedDate;
-    }
-  }
-
-function submitPurchase() {
-    alert("Redirecting to payment system.");
-  }
-
 function toggleNav() {
   const navbar = document.querySelector('.nav_bar');
   navbar.classList.toggle('responsive');
+}
+
+
+//sourced from https://www.w3schools.com/howto/howto_js_slideshow.asp
+let slideIndex = 1;
+if (document.getElementsByClassName("mySlides").length > 0) {
+    showSlides(slideIndex);
 }
 
 function plusSlides(n) {
@@ -142,9 +98,187 @@ if (document.getElementById('map')) {
         .openOn(map);
 }
 
-if (document.getElementsByClassName("mySlides").length > 0) {
-    let slideIndex = 1;
-    currentSlide(slideIndex);
-    showSlides(slideIndex+=1);
-    showSlides(slideIndex);
+//sourced from https://www.geeksforgeeks.org/javascript/how-to-create-a-dynamic-calendar-in-html-css-javascript/
+today = new Date();
+currentMonth = today.getMonth();
+currentYear = today.getFullYear();
+
+let calendar = document.getElementById("calendar");
+
+let months = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+];
+let days = [
+	"Sun", "Mon", "Tue", "Wed",
+	"Thu", "Fri", "Sat"];
+
+$dataHead = "<tr>";
+for (dhead in days) {
+	$dataHead += "<th data-days='" +
+		days[dhead] + "'>" +
+		days[dhead] + "</th>";
+}
+$dataHead += "</tr>";
+
+document.getElementById("thead-month").innerHTML = $dataHead;
+
+monthAndYear =
+	document.getElementById("monthAndYear");
+showCalendar(currentMonth, currentYear);
+
+function next() {
+	currentYear = currentMonth === 11 ?
+		currentYear + 1 : currentYear;
+	currentMonth = (currentMonth + 1) % 12;
+	showCalendar(currentMonth, currentYear);
+}
+
+function previous() {
+	currentYear = currentMonth === 0 ?
+		currentYear - 1 : currentYear;
+	currentMonth = currentMonth === 0 ?
+		11 : currentMonth - 1;
+	showCalendar(currentMonth, currentYear);
+}
+
+function showCalendar(month, year) {
+	let firstDay = new Date(year, month, 1).getDay();
+	tbl = document.getElementById("calendar-body");
+	tbl.innerHTML = "";
+	monthAndYear.innerHTML = months[month] + " " + year;
+
+	let date = 1;
+	for (let i = 0; i < 6; i++) {
+		let row = document.createElement("tr");
+		for (let j = 0; j < 7; j++) {
+			if (i === 0 && j < firstDay) {
+				cell = document.createElement("td");
+				cellText = document.createTextNode("");
+				cell.appendChild(cellText);
+				row.appendChild(cell);
+			} else if (date > daysInMonth(month, year)) {
+				break;
+			} else {
+				cell = document.createElement("td");
+				cell.setAttribute("data-date", date);
+				cell.setAttribute("data-month", month + 1);
+				cell.setAttribute("data-year", year);
+				cell.setAttribute("data-month_name", months[month]);
+				cell.className = "date-picker";
+                cell.onclick = function() {selectDate(this);};
+				cell.innerHTML = "<span>" + date + "</span>";
+
+				if (
+					date === today.getDate() &&
+					year === today.getFullYear() &&
+					month === today.getMonth()
+				) {
+					cell.className = "date-picker selected";
+				}
+
+				row.appendChild(cell);
+				date++;
+			}
+		}
+		tbl.appendChild(row);
+	}
+}
+
+
+function daysInMonth(iMonth, iYear) {
+	return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+function selectDate(cell){
+    var selected = document.querySelector('.date-picker.selected');
+    if (selected) {
+    selected.classList.remove('selected');
+    }
+    cell.classList.add('selected');
+    var d = cell.getAttribute('data-date').padStart(2, '0');
+    var m = cell.getAttribute('data-month').padStart(2, '0');
+    var y = cell.getAttribute('data-year');
+    showPurchaseForm(y + '-' + m + '-' + d);
+}
+
+function showPurchaseForm(selectedDate) {
+    if (selectedDate) {
+        document.getElementById("date").value = selectedDate;
+    }
+    document.getElementById("purchaseForm").style.display = "block";
+}
+
+function submitPurchase() {
+    var valid = true;
+    
+    validateEmail();
+    if (document.getElementById("emailError").textContent !== "") {
+        valid = false;
+    }
+    validateQuantity();
+    if (document.getElementById("quantityError").textContent !== "") {
+        valid = false;
+    }
+    validateDate();
+    if (document.getElementById("dateError").textContent !== "") {
+        valid = false;
+    }
+
+    if (valid) {
+        window.location.href = "confirmationpage.html";
+    }
+}
+
+function calculatePrice() {
+    var quantity = document.getElementById("tickets").value;
+    var total = quantity * 18;
+    let output = total;
+
+    localStorage.setItem("total", total);
+    document.getElementById("totalPrice").innerHTML = "Total: $" + total;
+    return total;
+}
+
+function validateEmail() {
+    var email = document.getElementById("email").value;
+    var emailError = document.getElementById("emailError");
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!regex.test(email)) {
+        emailError.textContent = "Please enter a valid email address.";
+    } else {
+        emailError.textContent = "";
+    }
+}
+
+function validateQuantity() {
+    var quantity = document.getElementById("tickets").value;
+    var quantityError = document.getElementById("quantityError");
+    if (quantity < 1 || quantity > 10) {
+        quantityError.textContent = "Please enter a quantity between 1 and 10.";
+    } else {
+        quantityError.textContent = "";
+    }
+}
+
+function validateDate(){
+    var selectedDate = document.getElementById("date").value;
+    var dateError = document.getElementById("dateError");
+    var today = new Date();
+    var selected = new Date(selectedDate);
+    if (selected < today) {
+        dateError.textContent = "Please select a valid date.";
+    } else {
+        dateError.textContent = "";
+    }
 }

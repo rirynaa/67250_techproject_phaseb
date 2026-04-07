@@ -30,57 +30,84 @@
             <a href="tickets.html">Buy Tickets</a>
         </nav>
         <main class="main">
-            <h3>Buy Tickets</h3>
+            <h1>Buy Tickets</h1>
             <table>
                 <tr>
-                    <th>Ticket Type</th>
-                    <th>Price</th>
+                    <th>Age</th>
+                    <th>Members</th>
+                    <th>Non-Members</th>
                 </tr>
                 <tr>
                     <td>Adult</td>
-                    <td>$15</td>
+                    <td>$18</td>
+                    <td>$18</td>
                 </tr>
                 <tr>
                     <td>Student/Senior</td>
-                    <td>$10</td>
+                    <td>$18</td>
+                    <td>$18</td>
                 </tr>
             </table>
             <div id="map"></div>
         </main>
         <figure class="main_figure">
-            <h3>Available Dates</h3>
+            <h1>Availability</h1>
             <table>
                 <tr>
-                    <th>Date</th>
-                    <th>Availability</th>
+                    <th>Days</th>
+                    <th>Hours</th>
                 </tr>
                 <tr>
-                    <td>2026-04-01</td>
-                    <td>Available</td>
-                    <td><button type="button" onclick="showPurchaseForm('2026-04-01')">Buy Now</button></td>
+                    <td>Mondays to Fridays</td>
+                    <td>9:00 AM - 5:00 PM</td>
                 </tr>
                 <tr>
-                    <td>2026-04-02</td>
-                    <td>Available</td>
-                    <td><button type="button" onclick="showPurchaseForm('2026-04-02')">Buy Now</button></td>
-                </tr>
-                <tr>
-                    <td>2026-04-03</td>
-                    <td>Sold Out</td>
+                    <td>Weekends and Holidays</td>
+                    <td>10:00 AM - 4:00 PM</td>
                 </tr>
             </table>
+            <div class="button-container-calendar">
+					<button id="previous"
+							onclick="previous()">
+						‹
+					</button>
+                    <h3 id="monthAndYear"></h3>
+					<button id="next"
+							onclick="next()">
+						›
+					</button>
+			</div>
+			<table class="table-calendar"
+				id="calendar"
+				data-lang="en">
+				<thead id="thead-month"></thead>
+				<tbody id="calendar-body"></tbody>
+			</table>
+            <p id="selected-display">No date selected</p>
         </figure>
     <div class = "form">
             <form id="purchaseForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="tickets">Number of tickets:</label>
-                <input type="number" id="tickets" name="tickets" min="1" required>
                 <label for="date">Selected date:</label>
-                <input type="date" id="date" name="date" required>
-                <button type="button" onclick="submitPurchase()">Submit</button>
+                <input type="date" id="date" name="date" oninput="validateDate()" required>
+                <p id="dateError" class="error-msg"></p>
+                <label for="ticketType">Ticket Type:</label>
+                <select id="ticketType" name="ticketType" required>
+                    <option value="">Select a ticket type</option>
+                    <option value="adult">Adult - $18</option>
+                    <option value="studentSenior">Student/Senior - $18</option>
+                </select>
+                <label for="tickets">Number of tickets:</label>
+                <input type="number" id="tickets" name="tickets" min="1" max="10" oninput="calculatePrice(); validateQuantity();" required>
+                <p id="quantityError" class="error-msg"></p>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" oninput="validateEmail()" required>
+                <p id="emailError" class="error-msg"></p>
+                <p id="totalPrice">Total: $0</p>
+                <label>
+                    <input type="checkbox" id="mailingList"> Join our mailing list
+                </label>
+
+                <button type="button" onclick="submitPurchase()">Place Order</button>
             </form>
         </div>
         <footer class="footer">

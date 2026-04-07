@@ -62,11 +62,6 @@ th {
   width: fit-content;
 }
 
-tr:nth-child(even) td {
-  background: #f2f2f2;
-  color:#0b0b0c;
-}
-
 #purchaseForm {
   display: none;
   margin: auto;
@@ -389,4 +384,56 @@ iframe {
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+.button-container-calendar button {
+	cursor: pointer;
+	background: green;
+	color: #fff;
+	border: 1px solid green;
+	border-radius: 4px;
+	padding: 5px 10px;
+}
+
+.table-calendar {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.table-calendar td,
+.table-calendar th {
+	padding: 5px;
+	border: 1px solid black;
+	text-align: center;
+	vertical-align: top;
+  margin: 20px;
+}
+
+.date-picker.selected {
+	background-color: white;
+	font-weight: bold;
+	outline: 1px dashed green;
+}
+
+.date-picker.selected span {
+	background-color: white;
+  color: black;
+}
+
+.date-picker:hover {
+	background-color: green;
+	color: white;
+	cursor: pointer;
+}
+
+
+.button-container-calendar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date-picker:hover span {
+    background-color: green;
+    color: white;
 }
