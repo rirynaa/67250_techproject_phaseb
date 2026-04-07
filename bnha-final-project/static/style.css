@@ -37,11 +37,15 @@ nav a:hover {
 #cta {
   background: #92ad70;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 12px;
+  padding: 15px 25px;
+  font-size: 20px;
+  border-radius: 16px;
   cursor: pointer;
   text-decoration: none;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
 }
 
 footer {
@@ -97,6 +101,26 @@ tr:nth-child(even) td {
     align-items: center;
 }
 
+.exhibitions .container {
+  grid-template-areas:
+    'header nav_bar'
+    'main main'
+    'exhibition1 exhibition2'
+    'buytickets buytickets'
+    'footer footer';
+    grid-template-columns: 1fr 1fr;
+}
+
+.explore .container {
+  grid-template-areas:
+    'header nav_bar'
+    'main main'
+    'slideshow slideshow'
+    'content content'
+    'footer footer';
+    grid-template-columns: 1fr 1fr;
+}
+
 .tickets-page .container {
   grid-template-areas:
     'header nav_bar'
@@ -104,6 +128,26 @@ tr:nth-child(even) td {
     'form form'
     'footer footer';
     grid-template-columns: 1fr 1fr;
+}
+
+.slideshow{
+  grid-area: slideshow;
+  position: relative;
+  max-width: 50%;
+  display:block;
+  justify-self: center;   
+}
+
+.exhibition1 {
+  grid-area: exhibition1;
+}
+
+.exhibition2 {
+  grid-area: exhibition2;
+}
+
+.content {
+  grid-area: content;
 }
 
 .header {
@@ -130,12 +174,30 @@ tr:nth-child(even) td {
   height: auto;
 }
 
+.exhibition1 img, .exhibition2 img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+  justify-self: center;
+}
+
 .footer {
    grid-area: footer;
 }
 
 .form {
   grid-area: form;
+}
+
+.exhibition1, .exhibition2 {
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.buytickets {
+  grid-area: buytickets;
 }
 
 .nav_bar {
@@ -194,6 +256,29 @@ tr:nth-child(even) td {
       'main_figure'
       'form'
       'footer';
+    grid-template-columns: 1fr;
+  }
+
+.exhibitions .container {
+    grid-template-areas:
+      'header'
+      'nav_bar'
+      'main'
+      'exhibition1'
+      'exhibition2'
+      'buytickets'
+      'footer';
+    grid-template-columns: 1fr;
+  }
+
+.explore .container {
+  grid-template-areas:
+    'header'
+    'nav_bar'
+    'main'
+    'slideshow'
+    'content'
+    'footer';
     grid-template-columns: 1fr;
   }
 
@@ -256,11 +341,52 @@ iframe {
   background: transparent;
 }
 
-.leaflet-popup-close-button {
-  background: red;
-}
-
 .leaflet-control-zoom {
   background: white;
   border: none;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
 }

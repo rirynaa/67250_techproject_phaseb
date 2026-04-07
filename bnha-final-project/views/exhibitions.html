@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="../static/script.js" defer></script>
 </head>
-<body onload="addYear()">
+<body class="exhibitions" onload="addYear()">
     <div class="container"> 
         <header class="header">
             <img id="logo" src="../static/MonoMuse1.png" alt="MonoMuse Museum Logo"> 
@@ -23,12 +23,21 @@
             <a href="tickets.html">Buy Tickets</a>
         </nav>
         <main class="main">
-            <h3>Current Exhibitions: Horse</h3>
-            <p>this is a horse yes. wild horses with many hairs</p>
-            <h3>Upcoming Exhibitions: Dog</h3>
-            <p>this is a dog yes. wild dogs with many hairs</p>
+            <h1>Exhibitions</h1>
         </main>
-        <figure class="main_figure"></figure>
+        <div class="exhibition1">
+            <h2>Aircraft Exhibition</h2>
+            <img src="../static/Smithsonians-National-Air-and-Space-Museum_America-by-Air.jpg" alt="Aircraft exhibit with vintage planes">
+            <p>This exhibition features a collection of aircrafts that highlight the history of aviation, technology, and the creativity that defines these aircrafts. Visitors can expect to see a wide range of aircraft models, aircraft parts that are unique to each era, and flying simulations.</p>
+        </div>
+        <div class="exhibition2">
+            <h2>Boat Exhibition</h2>
+            <img src="../static/boat-exhibit.jpg" alt="Boat exhibit with vintage vessels">
+            <p>This exhibition showcases the evolution of boats and their impact on maritime culture across the world. Visitors will have the opportunity to test their ability to navigate the seas with cutting-edge simulations and interact with these fascinating vessels.</p>
+        </div>
+        <div class="buytickets">
+            <a href="tickets.html" id="cta">Buy Tickets</a>
+        </div>
         <footer class="footer">
             <p id="copyYear"></p>
         </footer>

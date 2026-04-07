@@ -74,18 +74,20 @@ function ActiveNav(){
 }
 ActiveNav();
 
- $("#readLess").click(function(){ 
-    $("#longIntro").hide(); // Hide the long introduction text
-    $("#readLess").hide();  // Hide the "Read Less" button itself
-    $("#readMore").show();  // Show the "Read More" button  
+if (document.getElementById("longIntro") != null) {
+    $("#readLess").click(function(){ 
+        $("#longIntro").hide(); // Hide the long introduction text
+        $("#readLess").hide();  // Hide the "Read Less" button itself
+        $("#readMore").show();  // Show the "Read More" button  
 
-  });
+    });
 
-  $("#readMore").click(function(){
-    $("#longIntro").show();  // Show the long introduction text
-    $("#readLess").show();   // Show the "Read Less" button
-    $("#readMore").hide();   // Hide the "Read More" button  
-  });
+    $("#readMore").click(function(){
+        $("#longIntro").show();  // Show the long introduction text
+        $("#readLess").show();   // Show the "Read Less" button
+        $("#readMore").hide();   // Hide the "Read More" button  
+    });
+}
 
 function showPurchaseForm(selectedDate) {
     document.getElementById("purchaseForm").style.display = "block";
@@ -103,13 +105,46 @@ function toggleNav() {
   navbar.classList.toggle('responsive');
 }
 
-var map = L.map('map').setView([38.89, -77.03], 13);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-var popup = L.popup()
-    .setLatLng([38.89, -77.03])
-    .setContent("We are here!")
-    .openOn(map);
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+
+if (document.getElementById('map')) {
+    var map = L.map('map').setView([38.89, -77.03], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    var popup = L.popup()
+        .setLatLng([38.89, -77.03])
+        .setContent("We are here!")
+        .openOn(map);
+}
+
+if (document.getElementsByClassName("mySlides").length > 0) {
+    let slideIndex = 1;
+    currentSlide(slideIndex);
+    showSlides(slideIndex+=1);
+    showSlides(slideIndex);
+}
